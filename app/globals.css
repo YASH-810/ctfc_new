@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 0 64% 44%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 230 64% 44%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 0 64% 55%;
+    --accent-foreground: 210 40% 98%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --chart-1: 0 64% 44%;
+    --chart-2: 230 64% 44%;
+    --chart-3: 0 64% 55%;
+    --chart-4: 230 50% 60%;
+    --chart-5: 0 50% 60%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 0 64% 44%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 230 64% 44%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 0 64% 55%;
+    --accent-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Add padding for sticky header */
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .bg-gradient-primary-to-secondary {
+    background: linear-gradient(to right, #b92b27, #2733b9);
+  }
+
+  .bg-gradient-primary-to-accent {
+    background: linear-gradient(to right, #b92b27, #d64541);
+  }
+
+  .gradient-border {
+    position: relative;
+    border-radius: 0.5rem;
+    background: white;
+  }
+
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(to right, #b92b27, #d64541);
+    border-radius: 0.625rem;
+    z-index: -1;
+  }
+
+  /* 3D Card Effect */
+  .card-3d {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: translateY(0);
+  }
+
+  .card-3d:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Timeline for Important Dates */
+  .timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .timeline::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    background: linear-gradient(to bottom, #b92b27, #2733b9);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+    border-radius: 3px;
+  }
+
+  .timeline-container {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+  }
+
+  .timeline-container.left {
+    left: 0;
+  }
+
+  .timeline-container.right {
+    left: 50%;
+  }
+
+  .timeline-container::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: white;
+    border: 4px solid #b92b27;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .timeline-container.right::after {
+    left: -10px;
+  }
+
+  .timeline-content {
+    padding: 20px;
+    background-color: white;
+    position: relative;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* For mobile screens */
+  @media screen and (max-width: 768px) {
+    .timeline::after {
+      left: 31px;
+    }
+
+    .timeline-container {
+      width: 100%;
+      padding-left: 70px;
+      padding-right: 25px;
+    }
+
+    .timeline-container.right {
+      left: 0%;
+    }
+
+    .timeline-container.left::after,
+    .timeline-container.right::after {
+      left: 21px;
+    }
+  }
+
+  .border-gradient-to-r {
+    border-image: linear-gradient(to right, #b92b27, #d64541) 1;
+  }
+
+  .border-gradient-to-b {
+    border-image: linear-gradient(to bottom, #b92b27, #d64541) 1;
+  }
+}
+
